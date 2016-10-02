@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>英雄联盟英雄数据库</title>
+	<link rel="stylesheet" href="bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" href="css/style.less">
+</head>
+<body>
+	<header class="shyf_header">
+		<h1>英雄联盟数据库</h1>
+	</header>
+	<div class="pull-left col-lg-2 col-md-2 col-sm-2 col-xs-2 caidan">
+		<nav class="navbar navbar-info bg-primary" role="navigation">
+			<ul class="nav navbar-nav daohang">
+				<li class="sheshou"><a class="" href="javascript:void(0);">射手</a></li>
+				<li class="fuzhu"><a class="" href="javascript:void(0);">辅助</a></li>
+				<li class="fashi"><a class="" href="javascript:void(0);">法师</a></li>
+				<li class="zhanshi"><a class="" href="javascript:void(0);">战士</a></li>
+				<li class="tanke"><a class="" href="javascript:void(0);">坦克</a></li>
+				<li class="cike"><a class="" href="javascript:void(0);">刺客</a></li>
+				<li class="jiage">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)";>价格<span class="caret"></span></a>
+					<ul class="dropdown-menu"> 
+                        <li class="sibai"><a href="javascript:void(0);">450</a></li> 
+                        <li class="yiqian"><a href="javascript:void(0);">1350</a></li>  
+                        <li class="sanqian"><a href="javascript:void(0);">3150</a></li> 
+                        <li class="siqian"><a href="javascript:void(0);">4800</a></li> 
+                        <li class="liuqian"><a href="javascript:void(0);">6300</a></li> 
+                    </ul> 
+				</li>
+				<li class="xingbie">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)";>性别<span class="caret"></span></a>
+					<ul class="dropdown-menu"> 
+                        <li class"nan"><a href="javascript:void(0);">男</a></li> 
+                        <li class"nv"><a href="javascript:void(0);">女</a></li>  
+                    </ul> </li>
+			</ul>
+		</nav>
+	</div>
+	<div class="pull-right col-lg-10 col-md-10 col-sm-10 col-xs-10 biaoge">
+		<table class="table table-bordered shuju">
+			<tr class="info">
+				<td>姓名</td>
+				<td>称谓</td>
+				<td>俗称</td>
+				<td>性别</td>
+				<td>职业</td>
+				<td>价格</td>
+				<td>上线时间</td>
+			</tr>
+		</table>
+		<ul class="pagination">
+			<li><a href="javascript:void(0);">1</a></li>
+			<li><a href="javascript:void(0);">2</a></li>
+			<li><a href="javascript:void(0);">3</a></li>
+			<li><a href="javascript:void(0);">4</a></li>
+			<li><a href="javascript:void(0);">5</a></li>
+			<li><a href="javascript:void(0);">6</a></li>
+			<li><a href="javascript:void(0);">7</a></li>
+		</ul>
+	</div>
+<script src="jquery/dist/jquery.js"></script>
+<script src="bootstrap/dist/js/bootstrap.js"></script>
+<script>
+	//固定导航栏
+	//var navTop = $('.daohang').offset().top;
+	//$(window).on('scroll',function(){
+	//	if($('body').scrollTop() > navTop){
+	//		$('.daohang').addClass('juedui');
+	//		console.log(1);
+	//	}else{
+	//		$('.daohang').removeClass('juedui');
+	//		console.log(2);
+	//	}
+	//})
+	$.ajax({
+		url:'data/data.json',
+		dataType: 'json',
+		type: 'post',
+		success: function(json){
+			for(var i=0;i<20;i++){
+				$('.shuju').append('<tr><td>'+json[i].name+'</td><td>'+json[i].bieming+'</td><td>'+json[i].chuohao+'</td><td>'+json[i].sex+'</td><td>'+json[i].zhiye+'</td><td>'+json[i].jiage+'</td><td>'+json[i].date+'</td></tr>')
+			}
+		}
+	})
+	$('.pagination li').on('click',function(){
+		var index = $(this).index()*20;
+		if(index==6){
+			length = 13;
+		}else{
+			length = 20;
+		}
+		$.ajax({
+			url:'data/data.json',
+			dataType: 'json',
+			type: 'post',
+			async: 'false',
+			success: function(json){
+				$('.shuju').html('<tr class="info"><td>姓名</td><td>称谓</td><td>俗称</td><td>性别</td><td>职业</td><td>价格</td><td>上线时间</td></tr>');
+				for(var i=index;i<index+length;i++){
+					$('.shuju').append('<tr><td>'+json[i].name+'</td><td>'+json[i].bieming+'</td><td>'+json[i].chuohao+'</td><td>'+json[i].sex+'</td><td>'+json[i].zhiye+'</td><td>'+json[i].jiage+'</td><td>'+json[i].date+'</td></tr>')
+				}
+			}
+		})
+	})
+	$('.sheshou').on('click',function(){
+		$.ajax({
+			url: ""
+		})
+	})
+</script>
+</body>
+</html>
