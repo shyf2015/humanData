@@ -1,0 +1,14 @@
+<html>
+	<table></table>
+<script>
+	$.ajax({
+		url: "../data/data.json",
+		dataType: "json",
+		success: function(json){
+			for(var i=0;i<20;i++){
+				$('table').append('<tr><td>'+json[i].name+'</td><td>'+json[i].bieming+'</td><td>'+json[i].chuohao+'</td><td>'+json[i].sex+'</td><td>'+json[i].zhiye+'</td><td>'+json[i].jiage+'</td><td>'+json[i].date+'</td></tr>')
+			}
+		}
+	})
+</script>
+</html>

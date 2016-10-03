@@ -1,0 +1,23 @@
+body .shyf_header {
+  margin: 0;
+  padding: 0;
+  background: -webkit-linear-gradient(top, #008c8c, #64f0f0);
+}
+body .shyf_header h1 {
+  margin: 0;
+  margin-left: 100px;
+  line-height: 100px;
+}
+body .caidan,
+body .biaoge {
+  padding: 0;
+  margin: 0;
+}
+body .daohang li {
+  width: 100%;
+}
+body .daohang li a {
+  text-align: center;
+  color: #000;
+  font-weight: bold;
+}
